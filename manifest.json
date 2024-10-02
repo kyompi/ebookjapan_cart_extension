@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "ebookjapan cart",
+  "version": "1.0",
+  "description": "ebookjapanのカート画面でお得な商品をフィルタリング表示するなど。",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://ebookjapan.yahoo.co.jp/*"
+      ],
+      "js": [
+        "script.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "activeTab"
+  ]
+}
