@@ -1,1 +1,3 @@
 # ebookjapan_cart_extension
+
+chromeのパッケージ化をされていない拡張機能を使用するにして有効化するとebookjapanのカートページで割引本を絞り込める。
