@@ -1,9 +1,12 @@
 function checkPage() {
   if (window.location.href.includes('https://ebookjapan.yahoo.co.jp/cart/')) {
-    const targetElement = document.querySelector('ul.item-container__row.item-container__row--size-line.item-container__row--disp-list');
+    // const targetElement = document.querySelector('ul.item-container__row.item-container__row--size-line.item-container__row--disp-list');
+    const targetElement = document.querySelector('div.cart-main');
     if (targetElement) {
+      // console.log('addButtonContainer')
       addButtonContainer();
     } else {
+      // console.log('removeButtonContainer')
       removeButtonContainer();
     }
   } else {
@@ -70,9 +73,9 @@ function removeButtonContainer() {
 }
 
 function filterItems(type) {
-  const items = document.querySelectorAll('ul.item-container__row.item-container__row--size-line.item-container__row--disp-list > li');
+  const items = document.querySelectorAll('.cart-main .cart-contents__list > li, .cart-main .later-contents__list > li');
   items.forEach(item => {
-    const tag = item.querySelector('span.tagtxt.tagtxt--primary');
+    const tag = item.querySelector('span.book-caption__tagtext');
     if (type === 'both') {
       if (tag && (tag.textContent.includes('獲得') || tag.textContent.includes('OFF'))) {
         item.style.display = 'block';
@@ -90,15 +93,16 @@ function filterItems(type) {
 }
 
 function resetItems() {
-  const items = document.querySelectorAll('ul.item-container__row.item-container__row--size-line.item-container__row--disp-list > li');
+  const items = document.querySelectorAll('.cart-main .cart-contents__list > li, .cart-main .later-contents__list > li');
   items.forEach(item => {
     item.style.display = 'block';
   });
 }
 
 function expandContents() {
-  const expandElements = document.querySelectorAll('div.contents-more.contents-more--bold > span');
+  const expandElements = document.querySelectorAll('.cart-main .contents-more-toggle__text');
   expandElements.forEach(element => {
+    console.log('expandContents')
     element.click();
   });
 }
