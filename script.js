@@ -1,7 +1,8 @@
 function checkPage() {
   if (window.location.href.includes('https://ebookjapan.yahoo.co.jp/cart/')) {
     // const targetElement = document.querySelector('ul.item-container__row.item-container__row--size-line.item-container__row--disp-list');
-    const targetElement = document.querySelector('div.cart-main');
+    // targetElementがたまに変更されるので注意
+    const targetElement = document.querySelector('div.page-cart__main');
     if (targetElement) {
       // console.log('addButtonContainer')
       addButtonContainer();
@@ -72,10 +73,14 @@ function removeButtonContainer() {
   }
 }
 
+// アイテムをフィルタリング
 function filterItems(type) {
-  const items = document.querySelectorAll('.cart-main .cart-contents__list > li, .cart-main .later-contents__list > li');
+  const items = document.querySelectorAll('.page-cart__main > div.page-cart__cart-contents > ul.cart-contents__list > li, .page-cart__main > div.page-cart__later-contents > ul.later-contents__list > li');
+
+  console.log({items})
+  
   items.forEach(item => {
-    const tag = item.querySelector('span.book-caption__tagtext');
+    const tag = item.querySelector('.page-cart__main .book-caption__tagtext');
     if (type === 'both') {
       if (tag && (tag.textContent.includes('獲得') || tag.textContent.includes('OFF'))) {
         item.style.display = 'block';
@@ -92,20 +97,23 @@ function filterItems(type) {
   });
 }
 
+// リセット
 function resetItems() {
-  const items = document.querySelectorAll('.cart-main .cart-contents__list > li, .cart-main .later-contents__list > li');
+  const items = document.querySelectorAll('.page-cart__main > div.page-cart__cart-contents > ul.cart-contents__list > li, .page-cart__main > div.page-cart__later-contents > ul.later-contents__list > li');
   items.forEach(item => {
     item.style.display = 'block';
   });
 }
 
+// 全て展開
 function expandContents() {
-  const expandElements = document.querySelectorAll('.cart-main .contents-more-toggle__text');
+  const expandElements = document.querySelectorAll('.page-cart__main .contents-more-toggle__text');
   expandElements.forEach(element => {
     console.log('expandContents')
     element.click();
   });
 }
 
+console.log('ebookjapan_cart_extension loaded');
 checkPage();
 setInterval(checkPage, 1000);
